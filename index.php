@@ -13,10 +13,11 @@
             <a href="./pages/script.php?link=link3">Link3</a>
         </div>
         <?php
+            //se il file non esiste, lo creo e inserisco la stringa json vuota presa da un nuovo array associativo con valori azzerati
             if(!file_exists("./pages/contatori.json")){
                 $contatori = ["link1" => 0, "link2" => 0, "link3" =>0];
-                $stringa_json = json_encode($contatori);
-                file_put_contents("./pages/contatori.json", $stringa_json);
+                $stringa_json = json_encode($contatori); //codifico stringa json
+                file_put_contents("./pages/contatori.json", $stringa_json); //la copio sul file, creandolo, dato che non esiste.
             }
             //recupero la stringa json dal file
             $stringa_contatori_json = file_get_contents("./pages/contatori.json");

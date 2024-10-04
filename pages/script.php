@@ -8,7 +8,7 @@ $contatori = ["link1" => 0, "link2" => 0, "link3" =>0];
     $stringa_contatori_json = json_encode($contatori);
     
 
-//controllo se il file json con i contatori esiste già, altrimenti lo creo
+//controllo se il file json con i contatori esiste già, altrimenti lo creo, per sicurezza
 if(!file_exists("./contatori.json")){
     
     //inserisco la stringa json nel file
@@ -35,10 +35,9 @@ $link_cliccato = $_GET["link"];
     
 }
 //aumento il contatore utilizzando il valore prelevato da $_GET["link"] e che ho conservato nella variabile $link cliccato
-var_dump($contatori);
 $contatori["$link_cliccato"]++;
 //riscrivo i contatori aggiornati sul file json, convertendoli nuovamente in stringa json
 $stringa_contatori_json = json_encode($contatori);
 file_put_contents("./contatori.json", $stringa_contatori_json);
 
-header("Location: ../index.php");
+header("Location: ../index.php");//reindirizzo l'utente all'homepage ad ogni click 
